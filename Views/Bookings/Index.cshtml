@@ -1,0 +1,56 @@
+﻿@model List<Booking>
+@{
+}
+
+<h2 class="text-center mb-5">List of Bokings</h2>
+
+<div class="row mb-5">
+    <div class="col">
+        <a class="btn btn-primary" asp-controller="Bookings" asp-action="Create">New Booking</a>
+    </div>
+    <div class="col">
+
+
+    </div>
+
+</div>
+
+
+
+<table class="table">
+    <tread>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Event Name</th>
+            <th>Venue</th>
+            <th>Event Date</th>
+            <th>Created At</th>
+            <th>Action</th>
+        </tr>
+    </tread>
+
+    <tbody>
+
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.Id</td>
+                <td>@booking.email</td>
+                <td>@booking.eventName</td>
+                <td>@booking.venue</td>
+                <td>@booking.eventDate</td>
+                <td>@booking.createdAt.ToString("MM/dd/yyyy")</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-primary btn-sm" asp-controller="Bookings" asp-action="Edit" 
+                    asp-route-id="@booking.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Bookings" asp-action="Delete"
+                       asp-route-id="@booking.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+
+</table>
